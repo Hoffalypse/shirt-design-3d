@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Backdrop = () => {
+const Shirt = () => {
   return (
     <div>
-      Backdrop
+      
     </div>
   )
 }
 
-export default Backdrop
+export default Shirt
