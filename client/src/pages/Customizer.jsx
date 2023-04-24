@@ -49,7 +49,7 @@ const handleDecals = (type, result) => {
 }
 
 const handleActiveFilterTab = (tabName) => {
-  switch(tabname) {
+  switch(tabName) {
     case "logoShirt":
       state.isLogoTexture = !activeFilterTab[tabName]
       break;
@@ -61,10 +61,16 @@ const handleActiveFilterTab = (tabName) => {
         state.isFullTexture = false;
         break;
   }
+  setActiveFilterTab((prevState) => {
+    return {
+      ...prevState,
+      [tabName]: !prevState[tabName]
+    }
+  })
   
 }
 
-const readFile = () => {
+const readFile = (type) => {
   reader(file)
   .then((result) => {
     handleDecals(type, result)
@@ -108,8 +114,8 @@ const readFile = () => {
                     key={tab.name}
                     tab={tab}
                     isFilterTab
-                    isActiveTab=""
-                    handleClick={() => {}}
+                    isActiveTab={activeFilterTab[tab.name]}
+                    handleClick={() => handleActiveFilterTab(tab.name)}
                   />
                 ))}
 
