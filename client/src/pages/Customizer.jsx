@@ -30,7 +30,7 @@ const generateTabContent = () => {
     case "colorpicker":
       return <ColorPicker />
     case "filepicker":
-      return <FilePicker />
+      return <FilePicker file={file} setFile={setFile} readFile={readFile}/>
     case "aipicker":
       return <AIPicker/>
     default:
@@ -38,6 +38,39 @@ const generateTabContent = () => {
   }
 }
 
+const handleDecals = (type, result) => {
+  const decalType = DecalTypes[type]
+
+  state[decalType.stateProperty] = result
+
+  if(!activeFilterTab[decalType.filterTab]) {
+    handleActiveFilterTab(decalType.filterTab)
+  }
+}
+
+const handleActiveFilterTab = (tabName) => {
+  switch(tabname) {
+    case "logoShirt":
+      state.isLogoTexture = !activeFilterTab[tabName]
+      break;
+      case "stlyishShirt":
+        state.isFullTexture = !activeFilterTab[tabName]
+        break;
+      default:
+        state.isLogoTexture = true;
+        state.isFullTexture = false;
+        break;
+  }
+  
+}
+
+const readFile = () => {
+  reader(file)
+  .then((result) => {
+    handleDecals(type, result)
+    setActiveEditorTab('')
+  })
+}
   return (
     <AnimatePresence>
        {!snap.intro && (
