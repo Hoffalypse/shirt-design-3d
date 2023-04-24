@@ -21,6 +21,10 @@ const CameraRig = ({ children }) => {
         else targetPosition = [0, 0, 2]
     }
 
+    //set model Camera Poaition
+
+    easing.damp3(state.camera.position, targetPosition, 0.25, delta)
+
     easing.dampE(
       group.current.rotation,
       [state.pointer.y / 10, -state.pointer.x / 5, 0],
