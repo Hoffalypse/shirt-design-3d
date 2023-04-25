@@ -65,7 +65,7 @@ const handleSubmit = async (type) => {
 
     })
 
-    const data = await response.json
+    const data = await response.json()
 
     handleDecals(type, `data:image/png;base64,${data.photo}`)
     
