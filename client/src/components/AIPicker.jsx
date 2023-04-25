@@ -1,9 +1,18 @@
-import React from 'react'
+import CustomButton from "./CustomButton"
 
-const AIPicker = () => {
+
+const AIPicker = ({prompt, setPrompt, generateImg, handleSubmit}) => {
   return (
-    <div>
-      Ai Picker 
+    <div className="aipicker-container">
+     <textarea 
+     className="aipicker-textarea"
+     placeholder="ask AI"
+     value={prompt}
+     rows={5}
+     onChange={(e) => setPrompt(e.target.value)}
+     >
+
+     </textarea>
     </div>
   )
 }
