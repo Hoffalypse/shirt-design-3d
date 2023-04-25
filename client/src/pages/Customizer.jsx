@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 
@@ -14,6 +14,7 @@ import {
   CustomButton,
   FilePicker,
   Tab,
+  
 } from "../components";
 
 const Customizer = () => {
@@ -26,13 +27,25 @@ const Customizer = () => {
     logoShirt: true,
     stylishShirt: false,
   });
-
+  const colorOpen = useRef(false)
+  
   //Show tab content depending on active tab
 
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />;
+        
+        // if(colorOpen.current === false){
+         
+        //  colorOpen.current = true
+        //  console.log(colorOpen.current)
+          return <ColorPicker />;
+        // }
+        // else {
+        //   colorOpen.current = false
+        //   return <Empty/>
+        // }
+       
       case "filepicker":
         return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
       case "aipicker":
@@ -88,7 +101,7 @@ const Customizer = () => {
   };
 
   const handleActiveFilterTab = (tabName) => {
-    console.log(tabName);
+    
     switch (tabName) {
       case "logoShirt":
         state.isLogoTexture = !activeFilterTab[tabName];

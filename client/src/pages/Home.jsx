@@ -15,15 +15,15 @@ const Home = () => {
         <motion.section className='home' {...slideAnimation('left')}>
             <motion.header {...slideAnimation('down')}>
                 <img 
-                src='./threejs.png'
+                src='./logo-no-bg.png'
                 alt='logo'
-                className='w-8 h-8 object-contain'
+                className='w-24 h-24 object-contain'
                 />
             </motion.header>
             <motion.div className='home-content'{...headContainerAnimation}>
                 <motion.div {...headTextAnimation}>
                     <h1 className='head-text'>
-                        LET`S <br className='xl:block hidden'/> DO IT!
+                        LET'S <br className='xl:block hidden'/> DO IT!
                     </h1>
                 </motion.div>
                 <motion.div {...headContainerAnimation} className='flex flex-col gap-5'>
