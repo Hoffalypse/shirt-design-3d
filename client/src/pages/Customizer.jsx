@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
-
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
@@ -14,7 +15,6 @@ import {
   CustomButton,
   FilePicker,
   Tab,
-  
 } from "../components";
 
 const Customizer = () => {
@@ -27,25 +27,14 @@ const Customizer = () => {
     logoShirt: true,
     stylishShirt: false,
   });
-  const colorOpen = useRef(false)
-  
+
   //Show tab content depending on active tab
 
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        
-        // if(colorOpen.current === false){
-         
-        //  colorOpen.current = true
-        //  console.log(colorOpen.current)
-          return <ColorPicker />;
-        // }
-        // else {
-        //   colorOpen.current = false
-        //   return <Empty/>
-        // }
-       
+        return <ColorPicker />;
+
       case "filepicker":
         return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
       case "aipicker":
@@ -101,7 +90,6 @@ const Customizer = () => {
   };
 
   const handleActiveFilterTab = (tabName) => {
-    
     switch (tabName) {
       case "logoShirt":
         state.isLogoTexture = !activeFilterTab[tabName];
@@ -176,16 +164,21 @@ const Customizer = () => {
                 handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
-              <button className="download-btn" style={{backgroundColor: snap.color}} onClick={downloadCanvasToImage}>
+            <a
+              className="download-btn my-anchor-element"
+              style={{ backgroundColor: snap.color }}
+              onClick={downloadCanvasToImage}
+            >
               <img
                 src={download}
                 alt="download_image"
                 className="w-3/5 h-3/5 object-contain"
-                
               />
-            </button>
+              <Tooltip anchorSelect=".my-anchor-element" place="top">
+                Download Shirt
+              </Tooltip>
+            </a>
           </motion.div>
-     
         </>
       )}
     </AnimatePresence>
