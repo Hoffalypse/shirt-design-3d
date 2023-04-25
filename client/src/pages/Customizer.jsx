@@ -163,19 +163,16 @@ const Customizer = () => {
                 handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
-          </motion.div>
-          <motion.div
-            className="absolute z-10 bottom-5 left-5"
-            {...fadeAnimation}
-          >
-            <button className="download-btn" onClick={downloadCanvasToImage}>
+              <button className="download-btn" style={{backgroundColor: snap.color}} onClick={downloadCanvasToImage}>
               <img
                 src={download}
                 alt="download_image"
                 className="w-3/5 h-3/5 object-contain"
+                
               />
             </button>
           </motion.div>
+     
         </>
       )}
     </AnimatePresence>
